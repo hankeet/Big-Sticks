@@ -1,0 +1,643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Y_JobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="apply_for_job">
+          <Key>
+            <PropertyRef Name="apply_for_job_id" />
+          </Key>
+          <Property Name="apply_for_job_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_id" Type="tinyint" Nullable="false" />
+          <Property Name="title_of_apply_for_job" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="type_of_apply_for_job" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="time_of_job" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="wage_of_job" Type="varchar" MaxLength="50" />
+          <Property Name="address_of_job" Type="varchar" MaxLength="100" />
+          <Property Name="introduce_self" Type="varchar" MaxLength="500" />
+          <Property Name="want_to_recruiter_id" Type="tinyint" />
+          <Property Name="time_of_apply_job" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="audit_job">
+          <Key>
+            <PropertyRef Name="audit_job_id" />
+          </Key>
+          <Property Name="audit_job_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="job_information_id" Type="tinyint" Nullable="false" />
+          <Property Name="result_job" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="time_of_result" Type="time" Precision="7" Nullable="false" />
+          <Property Name="audit_staff_id" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="audit_recruiter">
+          <Key>
+            <PropertyRef Name="audit_recruiter_id" />
+          </Key>
+          <Property Name="audit_recruiter_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recruiter_information_id" Type="tinyint" Nullable="false" />
+          <Property Name="result_recruiter" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="reson_donot_pass" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="time_of_result" Type="time" Precision="7" Nullable="false" />
+          <Property Name="audit_staff_id" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="audit_staff_information">
+          <Key>
+            <PropertyRef Name="audit_staff_id" />
+          </Key>
+          <Property Name="audit_staff_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="audit_staff_name" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="audit_staff_login_pass" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="audit_staff_regist_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="audit_staff_last_login_time" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="collect_job">
+          <Key>
+            <PropertyRef Name="collect_job_id" />
+          </Key>
+          <Property Name="collect_job_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_id" Type="tinyint" />
+          <Property Name="job_id" Type="tinyint" />
+          <Property Name="add_time" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="collect_recruiter">
+          <Key>
+            <PropertyRef Name="collect_recruiter_id" />
+          </Key>
+          <Property Name="collect_recruiter_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_id" Type="tinyint" />
+          <Property Name="recruiter_id" Type="tinyint" />
+          <Property Name="add_time" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="donot_pass_recruiter">
+          <Key>
+            <PropertyRef Name="donot_pass_recruiter_id" />
+          </Key>
+          <Property Name="donot_pass_recruiter_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recruiter_id" Type="tinyint" Nullable="false" />
+          <Property Name="reson_donot_pass" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="time_of_result" Type="time" Precision="7" Nullable="false" />
+          <Property Name="audit_staff_id" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="job_condition">
+          <Key>
+            <PropertyRef Name="job_condition_id" />
+          </Key>
+          <Property Name="job_condition_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jon_information_id" Type="tinyint" Nullable="false" />
+          <Property Name="student_id" Type="tinyint" Nullable="false" />
+          <Property Name="recruiter_id" Type="tinyint" Nullable="false" />
+          <Property Name="finish_condition" Type="int" Nullable="false" />
+          <Property Name="student_confirm" Type="int" Nullable="false" />
+          <Property Name="recruiter_confirm" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="job_donot_pass">
+          <Key>
+            <PropertyRef Name="job_donot_pass_id" />
+          </Key>
+          <Property Name="job_donot_pass_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="job_information_id" Type="tinyint" Nullable="false" />
+          <Property Name="reason_about_false_pass" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="num_of_audit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="job_information">
+          <Key>
+            <PropertyRef Name="job_information_id" />
+          </Key>
+          <Property Name="job_information_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recruiter_id" Type="tinyint" Nullable="false" />
+          <Property Name="student_or_recruiter" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="title_of_job" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="type_of_job" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="content_of_job" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="time_of_job" Type="date" Nullable="false" />
+          <Property Name="wage_of_job" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address_of_job" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="if_passed" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="num_of_change" Type="int" Nullable="false" />
+          <Property Name="time_deal" Type="date" />
+          <Property Name="publish_time" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recruite_condition">
+          <Key>
+            <PropertyRef Name="recruite_condition_id" />
+          </Key>
+          <Property Name="recruite_condition_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="job_information" Type="tinyint" Nullable="false" />
+          <Property Name="student_id" Type="tinyint" Nullable="false" />
+          <Property Name="if_passed" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="time_of_deal" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recruiter_information">
+          <Key>
+            <PropertyRef Name="recruiter_id" />
+          </Key>
+          <Property Name="recruiter_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recruiter_img" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="recruiter_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="recruiter_type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="recruiter_manager_name" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="recruiter_manager_idcode_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="recruiter_manager_idcode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="recruiter_addrss" Type="varchar" MaxLength="200" />
+          <Property Name="recruiter_telphone" Type="varchar" MaxLength="11" />
+          <Property Name="recruiter_mail" Type="varchar" MaxLength="14" />
+          <Property Name="credit_score" Type="int" Nullable="false" />
+          <Property Name="menber" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="recruiter_login_pass" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="recruiter_regist_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="if_passed" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student_informations">
+          <Key>
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Name="student_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_nick" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="student_image" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="student_birthday" Type="varchar" MaxLength="16" />
+          <Property Name="student_address" Type="varchar" MaxLength="200" />
+          <Property Name="student_telphone" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="student_qq" Type="varchar" MaxLength="14" />
+          <Property Name="time_of_job" Type="int" Nullable="false" />
+          <Property Name="credit_score" Type="int" Nullable="false" />
+          <Property Name="apply_for_recruit" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="is_member" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="student_login_pass" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="regist_time" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student_is_recruiter">
+          <Key>
+            <PropertyRef Name="student_is_recruiter_id" />
+          </Key>
+          <Property Name="student_is_recruiter_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_id" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student_schedule">
+          <Key>
+            <PropertyRef Name="student_schedule_id" />
+          </Key>
+          <Property Name="student_schedule_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_id" Type="tinyint" Nullable="false" />
+          <Property Name="student_school_id" Type="varchar" MaxLength="50" />
+          <Property Name="student_school_pass" Type="varchar" MaxLength="100" />
+          <Property Name="monday" Type="text" />
+          <Property Name="tuesday" Type="text" />
+          <Property Name="wednesday" Type="text" />
+          <Property Name="thursday" Type="text" />
+          <Property Name="friday" Type="text" />
+          <Property Name="saturday" Type="text" />
+          <Property Name="sunday" Type="text" />
+        </EntityType>
+        <EntityContainer Name="Y_JobModelStoreContainer">
+          <EntitySet Name="apply_for_job" EntityType="Self.apply_for_job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="audit_job" EntityType="Self.audit_job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="audit_recruiter" EntityType="Self.audit_recruiter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="audit_staff_information" EntityType="Self.audit_staff_information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="collect_job" EntityType="Self.collect_job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="collect_recruiter" EntityType="Self.collect_recruiter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="donot_pass_recruiter" EntityType="Self.donot_pass_recruiter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="job_condition" EntityType="Self.job_condition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="job_donot_pass" EntityType="Self.job_donot_pass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="job_information" EntityType="Self.job_information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recruite_condition" EntityType="Self.recruite_condition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recruiter_information" EntityType="Self.recruiter_information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student_informations" EntityType="Self.student_informations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student_is_recruiter" EntityType="Self.student_is_recruiter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student_schedule" EntityType="Self.student_schedule" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Y_JobModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="apply_for_job">
+          <Key>
+            <PropertyRef Name="apply_for_job_id" />
+          </Key>
+          <Property Name="apply_for_job_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_id" Type="Byte" Nullable="false" />
+          <Property Name="title_of_apply_for_job" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type_of_apply_for_job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time_of_job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="wage_of_job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address_of_job" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="introduce_self" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="want_to_recruiter_id" Type="Byte" />
+          <Property Name="time_of_apply_job" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="audit_job">
+          <Key>
+            <PropertyRef Name="audit_job_id" />
+          </Key>
+          <Property Name="audit_job_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="job_information_id" Type="Byte" Nullable="false" />
+          <Property Name="result_job" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time_of_result" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="audit_staff_id" Type="Byte" />
+        </EntityType>
+        <EntityType Name="audit_recruiter">
+          <Key>
+            <PropertyRef Name="audit_recruiter_id" />
+          </Key>
+          <Property Name="audit_recruiter_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recruiter_information_id" Type="Byte" Nullable="false" />
+          <Property Name="result_recruiter" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="reson_donot_pass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time_of_result" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="audit_staff_id" Type="Byte" />
+        </EntityType>
+        <EntityType Name="audit_staff_information">
+          <Key>
+            <PropertyRef Name="audit_staff_id" />
+          </Key>
+          <Property Name="audit_staff_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="audit_staff_name" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="audit_staff_login_pass" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="audit_staff_regist_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="audit_staff_last_login_time" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="collect_job">
+          <Key>
+            <PropertyRef Name="collect_job_id" />
+          </Key>
+          <Property Name="collect_job_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_id" Type="Byte" />
+          <Property Name="job_id" Type="Byte" />
+          <Property Name="add_time" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="collect_recruiter">
+          <Key>
+            <PropertyRef Name="collect_recruiter_id" />
+          </Key>
+          <Property Name="collect_recruiter_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_id" Type="Byte" />
+          <Property Name="recruiter_id" Type="Byte" />
+          <Property Name="add_time" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="donot_pass_recruiter">
+          <Key>
+            <PropertyRef Name="donot_pass_recruiter_id" />
+          </Key>
+          <Property Name="donot_pass_recruiter_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recruiter_id" Type="Byte" Nullable="false" />
+          <Property Name="reson_donot_pass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time_of_result" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="audit_staff_id" Type="Byte" />
+        </EntityType>
+        <EntityType Name="job_condition">
+          <Key>
+            <PropertyRef Name="job_condition_id" />
+          </Key>
+          <Property Name="job_condition_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jon_information_id" Type="Byte" Nullable="false" />
+          <Property Name="student_id" Type="Byte" Nullable="false" />
+          <Property Name="recruiter_id" Type="Byte" Nullable="false" />
+          <Property Name="finish_condition" Type="Int32" Nullable="false" />
+          <Property Name="student_confirm" Type="Int32" Nullable="false" />
+          <Property Name="recruiter_confirm" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="job_donot_pass">
+          <Key>
+            <PropertyRef Name="job_donot_pass_id" />
+          </Key>
+          <Property Name="job_donot_pass_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="job_information_id" Type="Byte" Nullable="false" />
+          <Property Name="reason_about_false_pass" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="num_of_audit" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="job_information">
+          <Key>
+            <PropertyRef Name="job_information_id" />
+          </Key>
+          <Property Name="job_information_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recruiter_id" Type="Byte" Nullable="false" />
+          <Property Name="student_or_recruiter" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title_of_job" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type_of_job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="content_of_job" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time_of_job" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="wage_of_job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address_of_job" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="if_passed" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="num_of_change" Type="Int32" Nullable="false" />
+          <Property Name="time_deal" Type="DateTime" Precision="0" />
+          <Property Name="publish_time" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="recruite_condition">
+          <Key>
+            <PropertyRef Name="recruite_condition_id" />
+          </Key>
+          <Property Name="recruite_condition_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="job_information" Type="Byte" Nullable="false" />
+          <Property Name="student_id" Type="Byte" Nullable="false" />
+          <Property Name="if_passed" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time_of_deal" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="recruiter_information">
+          <Key>
+            <PropertyRef Name="recruiter_id" />
+          </Key>
+          <Property Name="recruiter_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recruiter_img" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_manager_name" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_manager_idcode_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_manager_idcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_addrss" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="recruiter_telphone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="recruiter_mail" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="credit_score" Type="Int32" Nullable="false" />
+          <Property Name="menber" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_login_pass" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recruiter_regist_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="if_passed" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student_informations">
+          <Key>
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Name="student_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_nick" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_birthday" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="student_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="student_telphone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_qq" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="time_of_job" Type="Int32" Nullable="false" />
+          <Property Name="credit_score" Type="Int32" Nullable="false" />
+          <Property Name="apply_for_recruit" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_member" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_login_pass" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="regist_time" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="student_is_recruiter">
+          <Key>
+            <PropertyRef Name="student_is_recruiter_id" />
+          </Key>
+          <Property Name="student_is_recruiter_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_id" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student_schedule">
+          <Key>
+            <PropertyRef Name="student_schedule_id" />
+          </Key>
+          <Property Name="student_schedule_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_id" Type="Byte" Nullable="false" />
+          <Property Name="student_school_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="student_school_pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="monday" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tuesday" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="wednesday" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="thursday" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="friday" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="saturday" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sunday" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Y_JobEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="apply_for_job" EntityType="Self.apply_for_job" />
+          <EntitySet Name="audit_job" EntityType="Self.audit_job" />
+          <EntitySet Name="audit_recruiter" EntityType="Self.audit_recruiter" />
+          <EntitySet Name="audit_staff_information" EntityType="Self.audit_staff_information" />
+          <EntitySet Name="collect_job" EntityType="Self.collect_job" />
+          <EntitySet Name="collect_recruiter" EntityType="Self.collect_recruiter" />
+          <EntitySet Name="donot_pass_recruiter" EntityType="Self.donot_pass_recruiter" />
+          <EntitySet Name="job_condition" EntityType="Self.job_condition" />
+          <EntitySet Name="job_donot_pass" EntityType="Self.job_donot_pass" />
+          <EntitySet Name="job_information" EntityType="Self.job_information" />
+          <EntitySet Name="recruite_condition" EntityType="Self.recruite_condition" />
+          <EntitySet Name="recruiter_information" EntityType="Self.recruiter_information" />
+          <EntitySet Name="student_informations" EntityType="Self.student_informations" />
+          <EntitySet Name="student_is_recruiter" EntityType="Self.student_is_recruiter" />
+          <EntitySet Name="student_schedule" EntityType="Self.student_schedule" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Y_JobModelStoreContainer" CdmEntityContainer="Y_JobEntities">
+          <EntitySetMapping Name="apply_for_job">
+            <EntityTypeMapping TypeName="Y_JobModel.apply_for_job">
+              <MappingFragment StoreEntitySet="apply_for_job">
+                <ScalarProperty Name="apply_for_job_id" ColumnName="apply_for_job_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="title_of_apply_for_job" ColumnName="title_of_apply_for_job" />
+                <ScalarProperty Name="type_of_apply_for_job" ColumnName="type_of_apply_for_job" />
+                <ScalarProperty Name="time_of_job" ColumnName="time_of_job" />
+                <ScalarProperty Name="wage_of_job" ColumnName="wage_of_job" />
+                <ScalarProperty Name="address_of_job" ColumnName="address_of_job" />
+                <ScalarProperty Name="introduce_self" ColumnName="introduce_self" />
+                <ScalarProperty Name="want_to_recruiter_id" ColumnName="want_to_recruiter_id" />
+                <ScalarProperty Name="time_of_apply_job" ColumnName="time_of_apply_job" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="audit_job">
+            <EntityTypeMapping TypeName="Y_JobModel.audit_job">
+              <MappingFragment StoreEntitySet="audit_job">
+                <ScalarProperty Name="audit_job_id" ColumnName="audit_job_id" />
+                <ScalarProperty Name="job_information_id" ColumnName="job_information_id" />
+                <ScalarProperty Name="result_job" ColumnName="result_job" />
+                <ScalarProperty Name="time_of_result" ColumnName="time_of_result" />
+                <ScalarProperty Name="audit_staff_id" ColumnName="audit_staff_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="audit_recruiter">
+            <EntityTypeMapping TypeName="Y_JobModel.audit_recruiter">
+              <MappingFragment StoreEntitySet="audit_recruiter">
+                <ScalarProperty Name="audit_recruiter_id" ColumnName="audit_recruiter_id" />
+                <ScalarProperty Name="recruiter_information_id" ColumnName="recruiter_information_id" />
+                <ScalarProperty Name="result_recruiter" ColumnName="result_recruiter" />
+                <ScalarProperty Name="reson_donot_pass" ColumnName="reson_donot_pass" />
+                <ScalarProperty Name="time_of_result" ColumnName="time_of_result" />
+                <ScalarProperty Name="audit_staff_id" ColumnName="audit_staff_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="audit_staff_information">
+            <EntityTypeMapping TypeName="Y_JobModel.audit_staff_information">
+              <MappingFragment StoreEntitySet="audit_staff_information">
+                <ScalarProperty Name="audit_staff_id" ColumnName="audit_staff_id" />
+                <ScalarProperty Name="audit_staff_name" ColumnName="audit_staff_name" />
+                <ScalarProperty Name="audit_staff_login_pass" ColumnName="audit_staff_login_pass" />
+                <ScalarProperty Name="audit_staff_regist_time" ColumnName="audit_staff_regist_time" />
+                <ScalarProperty Name="audit_staff_last_login_time" ColumnName="audit_staff_last_login_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="collect_job">
+            <EntityTypeMapping TypeName="Y_JobModel.collect_job">
+              <MappingFragment StoreEntitySet="collect_job">
+                <ScalarProperty Name="collect_job_id" ColumnName="collect_job_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="job_id" ColumnName="job_id" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="collect_recruiter">
+            <EntityTypeMapping TypeName="Y_JobModel.collect_recruiter">
+              <MappingFragment StoreEntitySet="collect_recruiter">
+                <ScalarProperty Name="collect_recruiter_id" ColumnName="collect_recruiter_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="recruiter_id" ColumnName="recruiter_id" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donot_pass_recruiter">
+            <EntityTypeMapping TypeName="Y_JobModel.donot_pass_recruiter">
+              <MappingFragment StoreEntitySet="donot_pass_recruiter">
+                <ScalarProperty Name="donot_pass_recruiter_id" ColumnName="donot_pass_recruiter_id" />
+                <ScalarProperty Name="recruiter_id" ColumnName="recruiter_id" />
+                <ScalarProperty Name="reson_donot_pass" ColumnName="reson_donot_pass" />
+                <ScalarProperty Name="time_of_result" ColumnName="time_of_result" />
+                <ScalarProperty Name="audit_staff_id" ColumnName="audit_staff_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job_condition">
+            <EntityTypeMapping TypeName="Y_JobModel.job_condition">
+              <MappingFragment StoreEntitySet="job_condition">
+                <ScalarProperty Name="job_condition_id" ColumnName="job_condition_id" />
+                <ScalarProperty Name="jon_information_id" ColumnName="jon_information_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="recruiter_id" ColumnName="recruiter_id" />
+                <ScalarProperty Name="finish_condition" ColumnName="finish_condition" />
+                <ScalarProperty Name="student_confirm" ColumnName="student_confirm" />
+                <ScalarProperty Name="recruiter_confirm" ColumnName="recruiter_confirm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job_donot_pass">
+            <EntityTypeMapping TypeName="Y_JobModel.job_donot_pass">
+              <MappingFragment StoreEntitySet="job_donot_pass">
+                <ScalarProperty Name="job_donot_pass_id" ColumnName="job_donot_pass_id" />
+                <ScalarProperty Name="job_information_id" ColumnName="job_information_id" />
+                <ScalarProperty Name="reason_about_false_pass" ColumnName="reason_about_false_pass" />
+                <ScalarProperty Name="num_of_audit" ColumnName="num_of_audit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job_information">
+            <EntityTypeMapping TypeName="Y_JobModel.job_information">
+              <MappingFragment StoreEntitySet="job_information">
+                <ScalarProperty Name="job_information_id" ColumnName="job_information_id" />
+                <ScalarProperty Name="recruiter_id" ColumnName="recruiter_id" />
+                <ScalarProperty Name="student_or_recruiter" ColumnName="student_or_recruiter" />
+                <ScalarProperty Name="title_of_job" ColumnName="title_of_job" />
+                <ScalarProperty Name="type_of_job" ColumnName="type_of_job" />
+                <ScalarProperty Name="content_of_job" ColumnName="content_of_job" />
+                <ScalarProperty Name="time_of_job" ColumnName="time_of_job" />
+                <ScalarProperty Name="wage_of_job" ColumnName="wage_of_job" />
+                <ScalarProperty Name="address_of_job" ColumnName="address_of_job" />
+                <ScalarProperty Name="if_passed" ColumnName="if_passed" />
+                <ScalarProperty Name="num_of_change" ColumnName="num_of_change" />
+                <ScalarProperty Name="time_deal" ColumnName="time_deal" />
+                <ScalarProperty Name="publish_time" ColumnName="publish_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recruite_condition">
+            <EntityTypeMapping TypeName="Y_JobModel.recruite_condition">
+              <MappingFragment StoreEntitySet="recruite_condition">
+                <ScalarProperty Name="recruite_condition_id" ColumnName="recruite_condition_id" />
+                <ScalarProperty Name="job_information" ColumnName="job_information" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="if_passed" ColumnName="if_passed" />
+                <ScalarProperty Name="time_of_deal" ColumnName="time_of_deal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recruiter_information">
+            <EntityTypeMapping TypeName="Y_JobModel.recruiter_information">
+              <MappingFragment StoreEntitySet="recruiter_information">
+                <ScalarProperty Name="recruiter_id" ColumnName="recruiter_id" />
+                <ScalarProperty Name="recruiter_img" ColumnName="recruiter_img" />
+                <ScalarProperty Name="recruiter_name" ColumnName="recruiter_name" />
+                <ScalarProperty Name="recruiter_type" ColumnName="recruiter_type" />
+                <ScalarProperty Name="recruiter_manager_name" ColumnName="recruiter_manager_name" />
+                <ScalarProperty Name="recruiter_manager_idcode_type" ColumnName="recruiter_manager_idcode_type" />
+                <ScalarProperty Name="recruiter_manager_idcode" ColumnName="recruiter_manager_idcode" />
+                <ScalarProperty Name="recruiter_addrss" ColumnName="recruiter_addrss" />
+                <ScalarProperty Name="recruiter_telphone" ColumnName="recruiter_telphone" />
+                <ScalarProperty Name="recruiter_mail" ColumnName="recruiter_mail" />
+                <ScalarProperty Name="credit_score" ColumnName="credit_score" />
+                <ScalarProperty Name="menber" ColumnName="menber" />
+                <ScalarProperty Name="recruiter_login_pass" ColumnName="recruiter_login_pass" />
+                <ScalarProperty Name="recruiter_regist_time" ColumnName="recruiter_regist_time" />
+                <ScalarProperty Name="if_passed" ColumnName="if_passed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student_informations">
+            <EntityTypeMapping TypeName="Y_JobModel.student_informations">
+              <MappingFragment StoreEntitySet="student_informations">
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="student_nick" ColumnName="student_nick" />
+                <ScalarProperty Name="student_image" ColumnName="student_image" />
+                <ScalarProperty Name="student_birthday" ColumnName="student_birthday" />
+                <ScalarProperty Name="student_address" ColumnName="student_address" />
+                <ScalarProperty Name="student_telphone" ColumnName="student_telphone" />
+                <ScalarProperty Name="student_qq" ColumnName="student_qq" />
+                <ScalarProperty Name="time_of_job" ColumnName="time_of_job" />
+                <ScalarProperty Name="credit_score" ColumnName="credit_score" />
+                <ScalarProperty Name="apply_for_recruit" ColumnName="apply_for_recruit" />
+                <ScalarProperty Name="is_member" ColumnName="is_member" />
+                <ScalarProperty Name="student_login_pass" ColumnName="student_login_pass" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student_is_recruiter">
+            <EntityTypeMapping TypeName="Y_JobModel.student_is_recruiter">
+              <MappingFragment StoreEntitySet="student_is_recruiter">
+                <ScalarProperty Name="student_is_recruiter_id" ColumnName="student_is_recruiter_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student_schedule">
+            <EntityTypeMapping TypeName="Y_JobModel.student_schedule">
+              <MappingFragment StoreEntitySet="student_schedule">
+                <ScalarProperty Name="student_schedule_id" ColumnName="student_schedule_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="student_school_id" ColumnName="student_school_id" />
+                <ScalarProperty Name="student_school_pass" ColumnName="student_school_pass" />
+                <ScalarProperty Name="monday" ColumnName="monday" />
+                <ScalarProperty Name="tuesday" ColumnName="tuesday" />
+                <ScalarProperty Name="wednesday" ColumnName="wednesday" />
+                <ScalarProperty Name="thursday" ColumnName="thursday" />
+                <ScalarProperty Name="friday" ColumnName="friday" />
+                <ScalarProperty Name="saturday" ColumnName="saturday" />
+                <ScalarProperty Name="sunday" ColumnName="sunday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

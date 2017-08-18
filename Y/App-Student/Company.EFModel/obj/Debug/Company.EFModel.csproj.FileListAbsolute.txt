@@ -1,0 +1,12 @@
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\Company.EFModel.dll.config
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\Company.EFModel.dll
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\Company.EFModel.pdb
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\EntityFramework.dll
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\EntityFramework.SqlServer.dll
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\EntityFramework.xml
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\EntityFramework.SqlServer.xml
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\BigSticks\Y\App-Student\Company.EFModel\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+F:\BigSticks\Y\App-Student\Company.EFModel\obj\Debug\Company.EFModel.csprojResolveAssemblyReference.cache
+F:\BigSticks\Y\App-Student\Company.EFModel\obj\Debug\Company.EFModel.dll
+F:\BigSticks\Y\App-Student\Company.EFModel\obj\Debug\Company.EFModel.pdb
