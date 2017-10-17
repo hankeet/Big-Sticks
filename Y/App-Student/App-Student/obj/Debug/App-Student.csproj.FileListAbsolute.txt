@@ -37,3 +37,6 @@ F:\GitHub workspace\Big-Sticks\Y\App-Student\App-Student\bin\zh-Hans\System.Web.
 F:\GitHub workspace\Big-Sticks\Y\App-Student\App-Student\bin\zh-Hans\System.Web.Mvc.resources.dll
 F:\GitHub workspace\Big-Sticks\Y\App-Student\App-Student\obj\Debug\App-Student.dll
 F:\GitHub workspace\Big-Sticks\Y\App-Student\App-Student\obj\Debug\App-Student.pdb
+D:\challenge\Y\App-Student\App-Student\obj\Debug\App-Student.csprojResolveAssemblyReference.cache
+D:\challenge\Y\App-Student\App-Student\obj\Debug\App-Student.dll
+D:\challenge\Y\App-Student\App-Student\obj\Debug\App-Student.pdb
